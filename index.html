@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chisato Violin | ヴァイオリニスト</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #2c2c2c;
+      --accent-color: #b8860b;
+      --bg-color: #ffffff;
+      --bg-light: #faf9f7;
+      --text-color: #333333;
+      --text-light: #666666;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text-color);
+      line-height: 1.8;
+      background-color: var(--bg-color);
+      overflow-x: hidden;
+    }
+
+    /* ヘッダー */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* ヒーローセクション */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fdfcfb 0%, #ffffff 50%, #faf8f5 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--accent-color);
+    }
+
+    /* セクション共通 */
+    section {
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--primary-color);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 3rem;
+    }
+
+    /* 演奏活動 */
+    #performance {
+      background-color: var(--bg-light);
+    }
+
+    .performance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .performance-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 4px;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .performance-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .performance-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    .performance-card .date {
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .performance-card p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* レッスン */
+    #lesson {
+      background-color: var(--bg-color);
+    }
+
+    .lesson-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .lesson-image {
+      background: linear-gradient(135deg, #f5f0eb 0%, #faf8f5 100%);
+      height: 400px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lesson-text h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .lesson-text p {
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .lesson-features {
+      list-style: none;
+    }
+
+    .lesson-features li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-color);
+      font-size: 0.9rem;
+    }
+
+    .lesson-features li::before {
+      content: '♪';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+      font-size: 0.85rem;
+    }
+
+    /* 問い合わせ */
+    #contact {
+      background-color: var(--bg-light);
+    }
+
+    .contact-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-content p {
+      margin-bottom: 2rem;
+      color: var(--text-light);
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 2px;
+    }
+
+    .contact-btn:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    /* フッター */
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .social-links a:hover {
+      opacity: 1;
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .lesson-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .lesson-image {
+        height: 250px;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .flower-decoration {
+        opacity: 0.7;
+      }
+
+      .flower-1 {
+        width: 80px;
+        height: 80px;
+      }
+
+      .flower-2 {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <nav>
+      <a href="#" class="logo">Chisato Violin</a>
+      <ul class="nav-links">
+        <li><a href="#top">TOP</a></li>
+        <li><a href="#performance">演奏活動</a></li>
+        <li><a href="#lesson">レッスン</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ヒーロー / TOP -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <h1>Chisato</h1>
+      <p>VIOLINIST</p>
+      <p class="hero-subtitle">Music speaks what cannot be expressed</p>
+    </div>
+  </section>
+
+  <!-- 演奏活動 -->
+  <section id="performance">
+    <div class="section-container">
+      <h2 class="section-title">Performance</h2>
+      <p class="section-subtitle">演奏活動</p>
+
+      <div class="performance-grid">
+        <div class="performance-card">
+          <h3>東京フィルハーモニー定期演奏会</h3>
+          <p class="date">2026.07.15（土）</p>
+          <p>サントリーホール / ブラームス：ヴァイオリン協奏曲</p>
+        </div>
+        <div class="performance-card">
+          <h3>室内楽コンサート</h3>
+          <p class="date">2026.08.20（日）</p>
+          <p>紀尾井ホール / モーツァルト、ベートーヴェン 他</p>
+        </div>
+        <div class="performance-card">
+          <h3>サロンコンサート</h3>
+          <p class="date">2026.09.10（日）</p>
+          <p>代官山ヒルサイドテラス / バッハ：無伴奏ソナタ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       レッスンセクション
+       Notionで管理している内容を更新する場合は
+       以下の部分を編集してください
+       ======================================== -->
+  <section id="lesson">
+    <div class="section-container">
+      <h2 class="section-title">Lesson</h2>
+      <p class="section-subtitle">レッスン</p>
+
+      <div class="lesson-content">
+        <div class="lesson-image">
+          <!-- ★ここに写真を設定: <img src="your-image.jpg" alt="レッスン風景"> -->
+          [ レッスン風景の写真 ]
+        </div>
+        <div class="lesson-text">
+          <!-- ★レッスンタイトル -->
+          <h3>一人ひとりに寄り添った丁寧なレッスン</h3>
+
+          <!-- ★レッスン説明文 -->
+          <p>
+            初心者の方から音大受験を目指す方まで、それぞれの目標に合わせた
+            レッスンを行っています。音楽を通じて、表現する喜びを
+            一緒に見つけていきましょう。
+          </p>
+
+          <!-- ★レッスン特徴リスト（増減可能） -->
+          <ul class="lesson-features">
+            <li>個人レッスン（60分）</li>
+            <li>オンラインレッスン対応</li>
+            <li>発表会年2回開催</li>
+            <li>無料体験レッスンあり</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======================================== -->
+
+  <!-- お問い合わせ -->
+  <section id="contact">
+    <div class="section-container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">お問い合わせ</p>
+
+      <div class="contact-content">
+        <p>
+          演奏依頼、レッスンのお申し込み、その他お問い合わせは<br>
+          下記よりお気軽にご連絡ください。
+        </p>
+        <!-- ★メールアドレスを変更する場合はここを編集 -->
+        <a href="mailto:contact@example.com" class="contact-btn">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <div class="social-links">
+      <!-- ★SNSリンクを変更する場合はここを編集 -->
+      <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </div>
+    <p class="copyright">&copy; 2026 Chisato Violin. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
